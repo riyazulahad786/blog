@@ -1,3 +1,4 @@
+import CommentSection from '@/app/components/CommentSection';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -17,7 +18,7 @@ export default async function PostDetail({ params }) {
       <p><strong>User ID:</strong> {post.id}</p>
       <p>{post.body.replace(/\n/g, ' ')}</p>
       <div style={{ marginTop: '20px' }}>
-        <h3>Comments (coming soon...)</h3>
+     <CommentSection/>
       </div>
       <Link href="/posts">Go back</Link>
     </div>
