@@ -1,15 +1,15 @@
-"use client"; // Make sure this is a client component
+"use client"; 
 
 import { useState } from "react";
 
 export default function CommentSection() {
-  const [comments, setComments] = useState([]); // State to hold comments
-  const [newComment, setNewComment] = useState(""); // State for the new comment input
+  const [comments, setComments] = useState([]); 
+  const [newComment, setNewComment] = useState(""); 
 
   const addComment = () => {
-    if (newComment.trim() !== "") { // Check if the input is not empty
-      setComments([...comments, newComment]); // Add new comment to the list
-      setNewComment(""); // Clear the input field
+    if (newComment.trim() !== "") { 
+      setComments([...comments, newComment]); 
+      setNewComment(""); 
     }
   };
 
@@ -19,9 +19,9 @@ export default function CommentSection() {
       <input
         type="text"
         value={newComment}
-        onChange={(e) => setNewComment(e.target.value)} // Update state on input change
+        onChange={(e) => setNewComment(e.target.value)} 
         placeholder="Add a comment"
-        style={{ marginRight: '10px' }}
+        style={{ marginRight: '10px', padding:"6px" }}
       />
       <button onClick={addComment}>Submit</button>
 

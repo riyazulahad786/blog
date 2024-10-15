@@ -1,24 +1,27 @@
+"use client"; 
+import { useContext } from 'react';
+import { PostContext } from '../../context/PostContext'; 
 import CommentSection from '@/app/components/CommentSection';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export default async function PostDetail({ params }) {
+export default function PostDetail({ params }) {
   const { id } = params; 
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
+  const { posts } = useContext(PostContext);
 
-  if (!res.ok) {
-    return notFound(); // This will trigger a 404 page
+  const post = posts.find((post) => post.id.toString() === id); 
+
+  if (!post) {
+    return notFound();
   }
 
-  const post = await res.json();
-  console.log(post,"id")
   return (
     <div style={{ padding: '20px' }}>
       <h1>{post.title}</h1>
-      <p><strong>User ID:</strong> {post.id}</p>
+      <p><strong>User ID:</strong> {post.userId}</p>
       <p>{post.body.replace(/\n/g, ' ')}</p>
       <div style={{ marginTop: '20px' }}>
-     <CommentSection/>
+        <CommentSection />
       </div>
       <Link href="/posts">Go back</Link>
     </div>
